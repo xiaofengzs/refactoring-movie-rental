@@ -29,14 +29,15 @@ public class Customer {
             Rental each = rentals.nextElement();
             double thisAmount = each.calculateMoviesAmount();
             frequentRenterPoints = each.getFrequentRenterPoints(frequentRenterPoints, each);
-            result.append("\t")
-                  .append(each.getMovie().getTitle())
-                  .append("\t")
-                  .append(thisAmount).append("\n");
+            each.generateMovieAmount(result, thisAmount);
             totalAmount += thisAmount;
         }
+        generateStatement(totalAmount, frequentRenterPoints, result);
+        return result.toString();
+    }
+
+    private void generateStatement(double totalAmount, int frequentRenterPoints, StringBuilder result) {
         result.append("Amount owed is ").append(totalAmount).append("\n");
         result.append("You earned ").append(frequentRenterPoints).append(" frequent renter points");
-        return result.toString();
     }
 }

@@ -44,4 +44,11 @@ public class Rental {
             frequentRenterPoints++;
         return frequentRenterPoints;
     }
+
+    void generateMovieAmount(StringBuilder result, double thisAmount) {
+        result.append("\t")
+                .append(this.getMovie().getTitle())
+                .append("\t")
+                .append(thisAmount).append("\n");
+    }
 }
