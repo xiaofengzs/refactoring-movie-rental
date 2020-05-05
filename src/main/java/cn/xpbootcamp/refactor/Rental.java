@@ -18,7 +18,8 @@ public class Rental {
         return daysRented;
     }
 
-    public double calculateMoviesAmount(double thisAmount) {
+    public double calculateMoviesAmount() {
+        double thisAmount = 0d;
         switch (this.getMovie().getPriceCode()) {
             case Movie.HISTORY:
                 thisAmount += 2;
@@ -35,5 +36,12 @@ public class Rental {
                 break;
         }
         return thisAmount;
+    }
+
+    public int getFrequentRenterPoints(int frequentRenterPoints, Rental each) {
+        frequentRenterPoints++;
+        if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 }
